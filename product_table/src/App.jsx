@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import MovingDot from './components/MovingDot';
 
 function ProductCategoryRow({ category}){
   return (
@@ -109,7 +110,47 @@ const PRODUCTS = [
   {category: "Vegetables", price: "$1", stocked: true, name: "Peas"}
 ];
 
+
+
+let nextId = 0;
+
+function List({products, setProducts}) {
+  const [name, setName] = useState('');
+
+
+  return (
+    <>
+      <h1>Add Products:</h1>
+      <input
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      <button onClick={() => {
+        setProducts([
+          ...products,
+          { id: nextId++, name: name , category: category, stocked: stocked, price: price}
+        ]);
+        setName('');
+      }}>Add</button>
+      <ul>
+        {products.map(artist => (
+          <li key={products.id}>{products.name}</li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
+
 export default function App() {
-  return <FilterableProductTable products={PRODUCTS} />;
+  const [products, setProducts] = useState([]);
+
+  return (
+    <>
+    {/* <MovingDot /> */}
+    <List products={products} setProducts={setProducts}/>
+  <FilterableProductTable products={PRODUCTS} />
+  </>
+  )
 }
 
