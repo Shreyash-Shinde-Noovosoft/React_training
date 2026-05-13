@@ -1,0 +1,74 @@
+[
+  {
+    "id": "1",
+    "title": "Finish Dashboard UI editeds",
+    "description": "Complete sidebar and navbar layout",
+    "status": "Completed",
+    "priority": "High",
+    "assignedTo": "Shreyash"
+  },
+  {
+    "id": "2",
+    "title": "Setup Authentication",
+    "description": "Implement login and signup flow",
+    "status": "InProgress",
+    "priority": "Medium",
+    "assignedTo": "Rahul"
+  },
+  {
+    "id": "3",
+    "title": "Connect tRPC Backend",
+    "description": "Create task CRUD procedures",
+    "status": "In Progress",
+    "priority": "High",
+    "assignedTo": "Aman"
+  },
+  {
+    "id": "4",
+    "title": "Add Dark Mode edited",
+    "description": "Implement theme toggle using next-themes",
+    "status": "Pending",
+    "priority": "Low",
+    "assignedTo": "Priya"
+  },
+  {
+    "id": "a87e99e6-e8fd-44e5-a1eb-01e08416bceb",
+    "title": "new added task",
+    "description": "dksjfksldjfskldjflssdklfj",
+    "status": "InProgress",
+    "priority": "Low",
+    "assignedTo": "Shreyash"
+  },
+  {
+    "id": "01dd7395-2dcb-452b-b0d7-027dd34de393",
+    "title": "newto225",
+    "description": "oerweiruoewirewireworoweirueowr",
+    "status": "Blocked",
+    "priority": "Low",
+    "assignedTo": "Kavita"
+  },
+  {
+    "id": "9ba3266b-b478-42ec-9b6e-de91c591a7b8",
+    "title": "ddddikk",
+    "description": "difudiufidufdiufdiffd",
+    "status": "Completed",
+    "priority": "Medium",
+    "assignedTo": ""
+  },
+  {
+    "id": "60352236-4387-4874-bee2-ef1424474219",
+    "title": "tykkk",
+    "description": "jikkkkkkkkkkddlkfjdklfjdslkfj",
+    "status": "Pending",
+    "priority": "Low",
+    "assignedTo": "joe"
+  },
+  {
+    "id": "cc0f3b62-058f-4e95-b09d-193526156360",
+    "title": "dsdsds",
+    "description": "dsdsdsddsdsdsdsdsddsdsd",
+    "status": "Blocked",
+    "priority": "Medium",
+    "assignedTo": "ds"
+  }
+]
