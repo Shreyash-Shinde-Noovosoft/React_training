@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select";
 
 import { TASK_STATUSES } from "@/constants/task-status";
+import { Task } from "@/server/api/types";
 
 type Props = {
   task: Task;

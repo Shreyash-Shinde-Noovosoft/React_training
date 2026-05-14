@@ -2,6 +2,9 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import fs from "fs";
 import path from "path";
+import { Priority, Status } from "@/constants/enums";
+import {Task} from "@/server/api/types"
+import { match } from "assert";
 
 export const taskRouter = createTRPCRouter({
   getTasks: publicProcedure.query(() => {
@@ -27,9 +30,8 @@ export const taskRouter = createTRPCRouter({
 
         filters: z.object({
           assignedToMe: z.boolean(),
-          highPriority: z.boolean(),
-          completed: z.boolean(),
-          inProgress: z.boolean(),
+          priority: z.enum(Priority).optional(),
+          status: z.enum(Status).optional(),
         }),
       }),
     )
@@ -48,24 +50,21 @@ export const taskRouter = createTRPCRouter({
           !input.filters.assignedToMe || task.assignedTo === "Shreyash";
 
         const matchesPriority =
-          !input.filters.highPriority || task.priority === "High";
+          !input.filters.priority || task.priority === input.filters.priority;
 
-        const matchesCompleted =
-          !input.filters.completed || task.status === "Completed";
+        const matchesStatus =
+          !input.filters.status || task.status === input.filters.status;
 
-        const matchesInProgress =
-          !input.filters.inProgress || task.status === "InProgress";
 
         return (
           matchesSearch &&
           matchesAssigned &&
           matchesPriority &&
-          matchesCompleted &&
-          matchesInProgress
+          matchesStatus 
         );
       });
 
-      return filteredTasks;
+      return filteredTasks as Task[];
     }),
 
   createTask: publicProcedure

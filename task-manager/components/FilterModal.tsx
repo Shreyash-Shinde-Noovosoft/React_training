@@ -11,20 +11,29 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { TaskHookForm } from "./TaskHookForm";
+import { FilterForm } from "./FilterForm";
+import { useState } from "react";
 
-export default function FilterModal({ task }: { task: Task }) {
+export default function FilterModal() {
+  const [open, setOpen] =
+  useState(false)
   return (
-    <Dialog>
+    <Dialog
+  open={open}
+  onOpenChange={setOpen}
+>
       <DialogTrigger asChild>
         <Button variant="outline">Filter</Button>
       </DialogTrigger>
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit Task</DialogTitle>
+          <DialogTitle>Filters</DialogTitle>
         </DialogHeader>
 
-        <TaskHookForm mode="edit" task={task} />
+        <FilterForm onSuccess={()=>{
+          setOpen(false)
+        }} />
       </DialogContent>
     </Dialog>
   );

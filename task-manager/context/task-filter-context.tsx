@@ -1,46 +1,52 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
+import {Status, Priority} from "@/constants/enums";
 
 type TaskFilters = {
   assignedToMe: boolean;
-  highPriority: boolean;
-  completed: boolean;
-  inProgress: boolean;
+  priority: Priority | undefined;
+  status: Status | undefined;
+
 };
 type TaskFilterContextType = {
   filters: TaskFilters;
   setFilters: React.Dispatch<React.SetStateAction<TaskFilters>>;
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const TaskFilterContext = createContext<TaskFilterContextType | null>(null);
+const TaskSearchAndFilterContext = createContext<TaskFilterContextType | null>(null);
 
-export function TaskFilterProvider({
+export function TaskSearchAndFilterProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const [filters, setFilters] = useState<TaskFilters>({
     assignedToMe: false,
-    highPriority: false,
-    completed: false,
-    inProgress: false,
+    priority: undefined,
+    status: undefined,
   });
 
+  const [search, setSearch] = useState<string>("");
+
   return (
-    <TaskFilterContext.Provider
+    <TaskSearchAndFilterContext.Provider
       value={{
         filters,
         setFilters,
+        search,
+        setSearch
       }}
     >
       {children}
-    </TaskFilterContext.Provider>
+    </TaskSearchAndFilterContext.Provider>
   );
 }
 
-export function useTaskFilter() {
-  const context = useContext(TaskFilterContext);
+export function useTaskSearchAndFilter() {
+  const context = useContext(TaskSearchAndFilterContext);
 
   if (!context) {
     throw new Error("useTaskFilter must be used inside provider");

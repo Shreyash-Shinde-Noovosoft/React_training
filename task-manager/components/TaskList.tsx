@@ -1,5 +1,6 @@
 import { DndContext } from "@dnd-kit/core";
 import TaskCard from "./TaskCard";
+import { Task } from "@/server/api/types";
 
 export default function TaskList({ tasks }: { tasks: Task[] | undefined }) {
   if (!tasks || tasks.length === 0) {

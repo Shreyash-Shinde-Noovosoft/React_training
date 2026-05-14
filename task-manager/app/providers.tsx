@@ -6,7 +6,7 @@ import { httpBatchLink } from "@trpc/client";
 import superjson from "superjson";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { TaskFilterProvider } from "@/context/task-filter-context";
+import { TaskSearchAndFilterProvider } from "@/context/task-filter-context";
 import { AppSidebar } from "@/components/AppSidebar";
 
 const queryClient = new QueryClient();
@@ -26,13 +26,13 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <SidebarProvider>
-            <TaskFilterProvider>
+            <TaskSearchAndFilterProvider>
               <div className="flex min-h-screen">
                 <AppSidebar />
 
                 <main className="flex-1 p-4">{children}</main>
               </div>
-            </TaskFilterProvider>
+            </TaskSearchAndFilterProvider>
           </SidebarProvider>
         </TooltipProvider>
       </QueryClientProvider>

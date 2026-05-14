@@ -1,74 +1,50 @@
 [
   {
     "id": "1",
-    "title": "Finish Dashboard UI editeds",
+    "title": "Finish Dashboard UI editeds new2",
     "description": "Complete sidebar and navbar layout",
-    "status": "Completed",
-    "priority": "High",
+    "status": "COMPLETED",
+    "priority": "HIGH",
     "assignedTo": "Shreyash"
   },
   {
     "id": "2",
     "title": "Setup Authentication",
     "description": "Implement login and signup flow",
-    "status": "InProgress",
-    "priority": "Medium",
+    "status": "INPROGRESS",
+    "priority": "MEDIUM",
     "assignedTo": "Rahul"
-  },
-  {
-    "id": "3",
-    "title": "Connect tRPC Backend",
-    "description": "Create task CRUD procedures",
-    "status": "In Progress",
-    "priority": "High",
-    "assignedTo": "Aman"
   },
   {
     "id": "4",
     "title": "Add Dark Mode edited",
     "description": "Implement theme toggle using next-themes",
-    "status": "Pending",
-    "priority": "Low",
+    "status": "PENDING",
+    "priority": "LOW",
     "assignedTo": "Priya"
-  },
-  {
-    "id": "a87e99e6-e8fd-44e5-a1eb-01e08416bceb",
-    "title": "new added task",
-    "description": "dksjfksldjfskldjflssdklfj",
-    "status": "InProgress",
-    "priority": "Low",
-    "assignedTo": "Shreyash"
   },
   {
     "id": "01dd7395-2dcb-452b-b0d7-027dd34de393",
     "title": "newto225",
     "description": "oerweiruoewirewireworoweirueowr",
     "status": "Blocked",
-    "priority": "Low",
+    "priority": "LOW",
     "assignedTo": "Kavita"
   },
   {
-    "id": "9ba3266b-b478-42ec-9b6e-de91c591a7b8",
-    "title": "ddddikk",
-    "description": "difudiufidufdiufdiffd",
-    "status": "Completed",
-    "priority": "Medium",
-    "assignedTo": ""
-  },
-  {
-    "id": "60352236-4387-4874-bee2-ef1424474219",
-    "title": "tykkk",
-    "description": "jikkkkkkkkkkddlkfjdklfjdslkfj",
-    "status": "Pending",
-    "priority": "Low",
+    "id": "8355fa78-6564-46ae-b0d1-018b3fded1c3",
+    "title": "dlkfjsdkljfasljfdslkf",
+    "description": "dskfjhldksfjlkdasjfladsf",
+    "status": "IN_PROGRESS",
+    "priority": "LOW",
     "assignedTo": "joe"
   },
   {
-    "id": "cc0f3b62-058f-4e95-b09d-193526156360",
-    "title": "dsdsds",
-    "description": "dsdsdsddsdsdsdsdsddsdsd",
-    "status": "Blocked",
-    "priority": "Medium",
-    "assignedTo": "ds"
+    "id": "83e1331b-e781-4bc4-ac10-fea14d470285",
+    "title": "lkjfldsakjfldsjfsdafdasfdsafds",
+    "description": "dsfadsfdsaffsdafadsffff",
+    "status": "PENDING",
+    "priority": "LOW",
+    "assignedTo": "SHreyash"
   }
 ]

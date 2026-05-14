@@ -39,6 +39,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Task } from "@/server/api/types";
+import { Priority, Status } from "@/constants/enums";
+import { ST } from "next/dist/shared/lib/utils";
 
 const formSchema = z.object({
   title: z
@@ -49,17 +52,18 @@ const formSchema = z.object({
     .string()
     .min(20, "Description must be at least 20 characters.")
     .max(100, "Description must be at most 100 characters."),
-  priority: z.enum(["High", "Low", "Medium"]),
-  status: z.enum(["Completed", "Pending", "InProgress"]),
+  priority: z.enum(Priority),
+  status: z.enum(Status),
   assignedTo: z.string(),
 });
 
 type Props = {
   mode: "create" | "edit";
   task?: Task;
+  onSuccess?: () => void;
 };
 
-export function TaskHookForm({ mode, task }: Props) {
+export function TaskHookForm({ mode, task, onSuccess }: Props) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -67,9 +71,9 @@ export function TaskHookForm({ mode, task }: Props) {
 
       description: task?.description ?? "",
 
-      priority: task?.priority ?? "Low",
+      priority: task?.priority ?? Priority.LOW,
 
-      status: task?.status ?? "Pending",
+      status: task?.status ?? Status.PENDING,
 
       assignedTo: task?.assignedTo ?? "",
     },
@@ -79,19 +83,22 @@ export function TaskHookForm({ mode, task }: Props) {
 
   const createTask = trpc.task.createTask.useMutation({
     onSuccess: () => {
-      utils.task.getTasks.invalidate();
+      utils.task.getSearchedTasks.invalidate();
 
       form.reset();
 
       toast.success("Task created!");
+      onSuccess?.()
     },
   });
 
   const updateTask = trpc.task.updateTask.useMutation({
     onSuccess: () => {
-      utils.task.getTasks.invalidate();
+      utils.task.getSearchedTasks.invalidate();
 
       toast.success("Task updated!");
+
+      onSuccess?.()
     },
   });
 
@@ -173,17 +180,17 @@ export function TaskHookForm({ mode, task }: Props) {
                     Priority
                   </FieldLabel>
 
-                  <Select value={field.value} onValueChange={field.onChange}>
+                  <Select value={Priority[field.value]} onValueChange={field.onChange}>
                     <SelectTrigger id="form-rhf-demo-priority">
                       <SelectValue placeholder="Select priority" />
                     </SelectTrigger>
 
                     <SelectContent>
-                      <SelectItem value="High">High</SelectItem>
+                      <SelectItem value={Priority.HIGH}>High</SelectItem>
 
-                      <SelectItem value="Medium">Medium</SelectItem>
+                      <SelectItem value={Priority.MEDIUM}>Medium</SelectItem>
 
-                      <SelectItem value="Low">Low</SelectItem>
+                      <SelectItem value={Priority.LOW}>Low</SelectItem>
                     </SelectContent>
                   </Select>
 
@@ -207,11 +214,11 @@ export function TaskHookForm({ mode, task }: Props) {
                     </SelectTrigger>
 
                     <SelectContent>
-                      <SelectItem value="Pending">Pending</SelectItem>
+                      <SelectItem value={Status.PENDING}>Pending</SelectItem>
 
-                      <SelectItem value="InProgress">In Progress</SelectItem>
+                      <SelectItem value={Status.IN_PROGRESS}>In Progress</SelectItem>
 
-                      <SelectItem value="Completed">Completed</SelectItem>
+                      <SelectItem value={Status.COMPLETED}>Completed</SelectItem>
                     </SelectContent>
                   </Select>
 

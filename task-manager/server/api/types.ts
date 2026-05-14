@@ -1,16 +1,10 @@
-type Task = {
+import { Priority, Status } from "@/constants/enums"
+
+export type Task = {
   id: string
   title: string
   description: string
-  priority:
-  | "High"
-  | "Medium"
-  | "Low"
-
-status:
-  | "Completed"
-  | "Pending"
-  | "InProgress"
-  // | "Blocked"
+  priority:Priority
+  status:Status
   assignedTo: string
 }

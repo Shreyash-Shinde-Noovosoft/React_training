@@ -23,7 +23,7 @@ export default function DeleteTaskDialog({ taskId }: { taskId: string }) {
 
   const deleteTask = trpc.task.deleteTask.useMutation({
     onSuccess: () => {
-      utils.task.getTasks.invalidate();
+      utils.task.getSearchedTasks.invalidate();
 
       toast.success("Task deleted!");
     },

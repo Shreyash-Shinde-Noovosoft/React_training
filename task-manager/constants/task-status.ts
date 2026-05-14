@@ -1,17 +1,19 @@
+import { Status } from "./enums";
+
 export const TASK_STATUSES = [
   {
     title: "Pending",
-    value: "Pending",
+    value: Status.PENDING,
   },
 
   {
     title: "In Progress",
-    value: "InProgress",
+    value: Status.IN_PROGRESS,
   },
 
   {
     title: "Completed",
-    value: "Completed",
+    value: Status.COMPLETED,
   },
 //   {
 //     title: "Blocked",

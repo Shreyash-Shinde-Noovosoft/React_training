@@ -21,15 +21,18 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { useTaskFilter } from "@/context/task-filter-context";
+import { useTaskSearchAndFilter } from "@/context/task-filter-context";
 import { fa } from "zod/v4/locales";
 import Link from "next/link";
+import { STATUS_CODES } from "http";
 
 export function AppSidebar() {
-  const { filters, setFilters } = useTaskFilter();
+  const { filters, setFilters } = useTaskSearchAndFilter();
   return (
     <Sidebar>
+      {/* <Link href="/">
       <SidebarHeader>Task Manager</SidebarHeader>
+      </Link> */}
       <SidebarContent>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -37,13 +40,12 @@ export function AppSidebar() {
               onClick={() =>
                 setFilters({
                   assignedToMe: false,
-                  highPriority: false,
-                  completed: false,
-                  inProgress: false,
+                  priority: undefined,
+                  status: undefined,
                 })
               }
             >
-              <Link href="/">Home</Link>
+              <Link href="/">Task Manager</Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
               <Link href="/board">
@@ -75,56 +77,9 @@ export function AppSidebar() {
                 My Tasks
               </SidebarMenuButton>
             </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                isActive={filters.inProgress}
-                onClick={() =>
-                  setFilters((prev) => ({
-                    ...prev,
-                    inProgress: !prev.inProgress,
-                  }))
-                }
-              >
-                {filters.inProgress && (
-                  <span className="h-2 w-2 rounded-full bg-current" />
-                )}
-                In Progress
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+            
 
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                isActive={filters.highPriority}
-                onClick={() =>
-                  setFilters((prev) => ({
-                    ...prev,
-                    highPriority: !prev.highPriority,
-                  }))
-                }
-              >
-                {filters.highPriority && (
-                  <span className="h-2 w-2 rounded-full bg-current" />
-                )}
-                High Priority
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                isActive={filters.completed}
-                onClick={() =>
-                  setFilters((prev) => ({
-                    ...prev,
-                    completed: !prev.completed,
-                  }))
-                }
-              >
-                {filters.completed && (
-                  <span className="h-2 w-2 rounded-full bg-current" />
-                )}
-                Completed
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+          
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

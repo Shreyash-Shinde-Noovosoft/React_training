@@ -1,3 +1,4 @@
+import { Task } from "@/server/api/types";
 import TaskCard from "./TaskCard";
 import { DndContext, useDroppable } from "@dnd-kit/core";
 
@@ -23,7 +24,7 @@ export default function TaskColumn({ title, tasks, statusValue }: Props) {
       <div className="space-y-4">
         {tasks.length > 0 ? (
           tasks.map((task) => (
-            <TaskCard key={task.id} task={task} showStatusSelector />
+            <TaskCard key={task.id} task={task} isDraggable />
           ))
         ) : (
           <div className="rounded-xl border border-dashed border-gray-300 py-8 text-center text-sm text-gray-500">
