@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createTRPCRouter, publicProcedure } from "../trpc";
+import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 import fs from "fs";
 import path from "path";
 import { Priority, Status } from "@/constants/enums";
@@ -23,7 +23,7 @@ export const taskRouter = createTRPCRouter({
   return tasks as Task[]
   }),
 
-  getSearchedTasks: publicProcedure
+  getSearchedTasks: protectedProcedure
     .input(
       z.object({
         search: z.string().optional(),
@@ -67,7 +67,7 @@ export const taskRouter = createTRPCRouter({
       return filteredTasks as Task[];
     }),
 
-  createTask: publicProcedure
+  createTask: protectedProcedure
     .input(
       z.object({
         title: z.string(),
@@ -93,7 +93,7 @@ export const taskRouter = createTRPCRouter({
       return newTask;
     }),
 
-  deleteTask: publicProcedure
+  deleteTask: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ input }) => {
       const filePath = path.join(process.cwd(), "/tasks.json");
@@ -105,7 +105,7 @@ export const taskRouter = createTRPCRouter({
       fs.writeFileSync(filePath, JSON.stringify(updatedTasks, null, 2));
     }),
 
-  updateTask: publicProcedure
+  updateTask: protectedProcedure
     .input(
       z.object({
         id: z.string(),

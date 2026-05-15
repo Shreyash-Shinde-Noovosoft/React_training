@@ -1,0 +1,59 @@
+[
+  {
+    "id": "u1",
+    "name": "Aarav Sharma",
+    "email": "aarav.sharma@example.com",
+    "role": "Frontend Developer",
+    "password": "shreyash"
+
+  },
+  {
+    "id": "u2",
+    "name": "Priya Patel",
+    "email": "priya.patel@example.com",
+    "role": "Backend Developer",
+    "password": "shreyash"
+  },
+  {
+    "id": "u3",
+    "name": "Rohan Verma",
+    "email": "rohan.verma@example.com",
+    "role": "UI/UX Designer",
+    "password": "shreyash"
+  },
+  {
+    "id": "u4",
+    "name": "Ananya Singh",
+    "email": "ananya.singh@example.com",
+    "role": "QA Engineer",
+    "password": "shreyash"
+  },
+  {
+    "id": "u5",
+    "name": "Karan Mehta",
+    "email": "karan.mehta@example.com",
+    "role": "Project Manager",
+    "password": "shreyash"
+  },
+  {
+    "id": "u6",
+    "name": "Sneha Iyer",
+    "email": "sneha.iyer@example.com",
+    "role": "DevOps Engineer",
+    "password": "shreyash"
+  },
+  {
+    "id": "u7",
+    "name": "Aditya Rao",
+    "email": "aditya.rao@example.com",
+    "role": "Full Stack Developer",
+    "password": "shreyash"
+  },
+  {
+    "id": "u8",
+    "name": "Neha Kulkarni",
+    "email": "neha.kulkarni@example.com",
+    "role": "Business Analyst",
+    "password": "shreyash"
+  }
+]

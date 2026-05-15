@@ -8,3 +8,11 @@ export type Task = {
   status:Status
   assignedTo: string
 }
+
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  password: string;
+};
