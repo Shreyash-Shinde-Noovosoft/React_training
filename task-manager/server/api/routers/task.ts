@@ -7,7 +7,7 @@ import {Task} from "@/server/api/types"
 import { match } from "assert";
 
 export const taskRouter = createTRPCRouter({
-  getTasks: publicProcedure.query(() => {
+  getTasks: protectedProcedure.query(() => {
     const filePath = path.join(
     process.cwd(),
     "/tasks.json"
@@ -35,7 +35,7 @@ export const taskRouter = createTRPCRouter({
         }),
       }),
     )
-    .query(({ input }) => {
+    .query(({ input, ctx }) => {
       const filePath = path.join(process.cwd(), "/tasks.json");
 
       const tasks: Task[] = JSON.parse(fs.readFileSync(filePath, "utf-8"));
@@ -47,7 +47,7 @@ export const taskRouter = createTRPCRouter({
           task.description.toLowerCase().includes(input.search.toLowerCase());
 
         const matchesAssigned =
-          !input.filters.assignedToMe || task.assignedTo === "Shreyash";
+          !input.filters.assignedToMe || task.assignedTo === ctx.user.userId;
 
         const matchesPriority =
           !input.filters.priority || task.priority === input.filters.priority;

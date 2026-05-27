@@ -25,6 +25,7 @@ import { useTaskSearchAndFilter } from "@/context/task-filter-context";
 import { fa } from "zod/v4/locales";
 import Link from "next/link";
 import { STATUS_CODES } from "http";
+import LogoutButton from "./LogoutButton";
 
 export function AppSidebar() {
   const { filters, setFilters } = useTaskSearchAndFilter();
@@ -84,6 +85,7 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter />
+      <LogoutButton/>
     </Sidebar>
   );
 }

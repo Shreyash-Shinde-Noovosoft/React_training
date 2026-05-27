@@ -9,6 +9,14 @@ import { TaskHookForm } from "@/components/TaskHookForm";
 import { Input } from "@/components/ui/input";
 import FilterModal from "@/components/FilterModal";
 
+import TaskFilterSelect
+  from "@/components/TaskFilterSelect";
+
+import {
+  Priority,
+  Status,
+} from "@/constants/enums";
+
 export default function Home() {
 
 
@@ -26,14 +34,50 @@ export default function Home() {
 
   return (
     <div className="space-y-6 p-6">
-      <Input
-        placeholder="Search tasks..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="max-w-md"
-      />
 
-      <FilterModal />
+      {/* <FilterModal /> */}
+
+      <div className="flex flex-wrap gap-4">
+
+  <Input
+    placeholder="Search tasks..."
+    value={search}
+    onChange={(e) =>
+      setSearch(e.target.value)
+    }
+    className="max-w-md"
+  />
+
+  <TaskFilterSelect
+    placeholder="Status"
+    value={filters.status}
+    options={Object.values(Status)}
+    onChange={(value) =>
+      setFilters((prev) => ({
+        ...prev,
+
+        status:
+          value as Status
+          | undefined,
+      }))
+    }
+  />
+
+  <TaskFilterSelect
+    placeholder="Priority"
+    value={filters.priority}
+    options={Object.values(Priority)}
+    onChange={(value) =>
+      setFilters((prev) => ({
+        ...prev,
+
+        priority:
+          value as Priority
+          | undefined,
+      }))
+    }
+  />
+</div>
 
       <div className="flex gap-6">
         <div className="w-[400px] shrink-0">

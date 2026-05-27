@@ -1,8 +1,7 @@
-'use client'
+"use client";
 
 import Providers from "../providers";
 import "@/app/globals.css";
-
 import Link from "next/link";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
@@ -10,15 +9,10 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "sonner";
-import {
-  useEffect,
-} from "react"
+import { useEffect } from "react";
 
-import {
-  useRouter,
-} from "next/navigation"
-
-
+import { useRouter } from "next/navigation";
+import { trpc } from "@/server/api/client";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -27,39 +21,47 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
 
-    const router =
-    useRouter()
+  // const { error, isLoading } = trpc.task.getTasks.useQuery();
+
+const {
+  error,
+  isLoading,
+} = trpc.auth.me.useQuery(
+  undefined,
+  {
+
+    retry: false,
+
+    refetchInterval:
+      1000 * 30,
+  }
+)
+
+
+
+console.log(
+  "heereree lies errrrr ```````````",error)
 
   useEffect(() => {
-
-    const token =
-      localStorage.getItem(
-        "token"
-      )
-
-    if (!token) {
-
-      router.push("/auth")
+    if (error?.data?.code === "UNAUTHORIZED") {
+      router.push("/auth");
     }
+  }, [error]);
 
-  }, [])
+  // if(error?.data?.code === "UNAUTHORIZED") router.push("/auth");
+
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
-      <body>
+
         <TooltipProvider>
           <SidebarProvider>
             <div className="flex min-h-screen">
-              {/* <AppSidebar /> */}
-
-              <main className="flex-1 p-4">
-                <Providers>{children}</Providers>
-              </main>
+              <AppSidebar />
+                {children}
               <Toaster />
             </div>
           </SidebarProvider>
         </TooltipProvider>
-      </body>
-    </html>
   );
 }

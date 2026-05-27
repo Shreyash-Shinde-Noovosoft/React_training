@@ -26,7 +26,7 @@ export default function LoginPage() {
         password,
       });
 
-      localStorage.setItem("token", response.token);
+      // localStorage.setItem("token", response.token);
 
       router.push("/");
 

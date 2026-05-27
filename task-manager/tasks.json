@@ -1,25 +1,17 @@
 [
   {
-    "id": "1",
-    "title": "Finish Dashboard UI editeds new2",
-    "description": "Complete sidebar and navbar layout",
-    "status": "COMPLETED",
-    "priority": "HIGH",
-    "assignedTo": "Shreyash"
-  },
-  {
     "id": "2",
     "title": "Setup Authentication",
     "description": "Implement login and signup flow",
-    "status": "INPROGRESS",
+    "status": "PENDING",
     "priority": "MEDIUM",
-    "assignedTo": "Rahul"
+    "assignedTo": "u3"
   },
   {
     "id": "4",
     "title": "Add Dark Mode edited",
     "description": "Implement theme toggle using next-themes",
-    "status": "IN_PROGRESS",
+    "status": "PENDING",
     "priority": "LOW",
     "assignedTo": "Priya"
   },
@@ -35,7 +27,7 @@
     "id": "8355fa78-6564-46ae-b0d1-018b3fded1c3",
     "title": "dlkfjsdkljfasljfdslkf",
     "description": "dskfjhldksfjlkdasjfladsf",
-    "status": "IN_PROGRESS",
+    "status": "COMPLETED",
     "priority": "LOW",
     "assignedTo": "joe"
   },
@@ -43,8 +35,32 @@
     "id": "83e1331b-e781-4bc4-ac10-fea14d470285",
     "title": "lkjfldsakjfldsjfsdafdasfdsafds",
     "description": "dsfadsfdsaffsdafadsffff",
-    "status": "PENDING",
+    "status": "IN_PROGRESS",
     "priority": "LOW",
     "assignedTo": "SHreyash"
+  },
+  {
+    "id": "0771264b-6411-4eab-86b7-35b058cb0680",
+    "title": "testy",
+    "description": "jkdjfkdsjfksdjfkfskfskdjf",
+    "status": "IN_PROGRESS",
+    "priority": "MEDIUM",
+    "assignedTo": "u1"
+  },
+  {
+    "id": "61e4a381-bbbf-4683-9667-f0d8ff0c81dd",
+    "title": "2taskk",
+    "description": "jdskfjdslkfajlksdfjlasdkfjasl",
+    "status": "PENDING",
+    "priority": "LOW",
+    "assignedTo": "u2"
+  },
+  {
+    "id": "f503cce2-aec4-4350-a57f-a91cf42d6fbb",
+    "title": "newtasksss",
+    "description": "fklsdajflpdsjfpaosifewsfq",
+    "status": "PENDING",
+    "priority": "LOW",
+    "assignedTo": "u1"
   }
 ]

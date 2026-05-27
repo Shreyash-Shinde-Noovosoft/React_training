@@ -18,11 +18,11 @@ const trpcClient = trpc.createClient({
 
       transformer: superjson,
 
-      headers() {
-        return {
-          authorization: localStorage.getItem("token") ?? "",
-        };
-      },
+      // headers() {
+      //   return {
+      //     authorization: localStorage.getItem("token") ?? "",
+      //   };
+      // },
     }),
   ],
 });
@@ -31,17 +31,14 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <SidebarProvider>
+
             <TaskSearchAndFilterProvider>
               <div className="flex min-h-screen">
-                <AppSidebar />
 
                 <main className="flex-1 p-4">{children}</main>
               </div>
             </TaskSearchAndFilterProvider>
-          </SidebarProvider>
-        </TooltipProvider>
+
       </QueryClientProvider>
     </trpc.Provider>
   );

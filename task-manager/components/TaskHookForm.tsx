@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, Form, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 
@@ -112,6 +112,8 @@ export function TaskHookForm({ mode, task, onSuccess }: Props) {
       });
     }
   }
+
+  const {data: users, isLoading, error} = trpc.user.getUsers.useQuery()
 
   return (
     <Card className="w-full sm:max-w-md">
@@ -238,12 +240,32 @@ export function TaskHookForm({ mode, task, onSuccess }: Props) {
                     Assigned To
                   </FieldLabel>
 
-                  <Input
+                  {/* <Input
                     {...field}
                     id="form-rhf-demo-assignedTo"
                     aria-invalid={fieldState.invalid}
                     placeholder="Assignee name"
-                  />
+                  /> */}
+
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger id="form-rhf-demo-assignedTo">
+                      <SelectValue placeholder="Select User" />
+                    </SelectTrigger>
+
+                    <SelectContent>
+                      {/* <SelectItem value={Status.PENDING}>Pending</SelectItem>
+
+                      <SelectItem value={Status.IN_PROGRESS}>In Progress</SelectItem>
+
+                      <SelectItem value={Status.COMPLETED}>Completed</SelectItem> */}
+
+                      {
+                        users?.map((u) => (
+                          <SelectItem key={u.id} value={u.id}>{u.name}</SelectItem>
+                        ))
+                      }
+                    </SelectContent>
+                  </Select>
 
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />

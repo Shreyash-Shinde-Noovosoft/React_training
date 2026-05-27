@@ -3,21 +3,32 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import jwt from "jsonwebtoken";
 import superjson from "superjson";
 
-export async function createTRPCContext(opts: { req: Request }) {
-  const token = opts.req.headers.get("authorization");
+import { parse } from "cookie";
+import { AuthUser } from "./types";
+
+export async function createTRPCContext(opts: {
+  req: Request;
+  resHeaders: Headers;
+}) {
+  // const token = opts.req.headers.get("authorization");
+
+  const cookies = parse(opts.req.headers.get("cookie") ?? "");
+
+  const token = cookies.token;
 
   let user = null;
 
   if (token) {
     try {
-      user = jwt.verify(token, process.env.JWT_SECRET!);
+      user = jwt.verify(token, process.env.JWT_SECRET!) as AuthUser;
     } catch {
       user = null;
     }
-  } 
+  }
 
   return {
     user,
+    resHeaders: opts.resHeaders,
   };
 }
 

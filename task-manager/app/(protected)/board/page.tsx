@@ -11,6 +11,9 @@ import { Task } from "@/server/api/types";
 import { useTaskSearchAndFilter } from "@/context/task-filter-context";
 import { Input } from "@/components/ui/input";
 import FilterModal from "@/components/FilterModal";
+import TaskFilterSelect from "@/components/TaskFilterSelect";
+import { Priority, Status } from "@/constants/enums";
+import TanstackTable from "@/components/TanstackTable";
 
 export default function BoardPage() {
   const { filters, setFilters, search, setSearch } = useTaskSearchAndFilter();
@@ -23,7 +26,7 @@ export default function BoardPage() {
 
   const updateTask = trpc.task.updateTask.useMutation({
     onSuccess: () => {
-      utils.task.getTasks.invalidate();
+      utils.task.getSearchedTasks.invalidate();
     },
   });
 
@@ -51,6 +54,8 @@ export default function BoardPage() {
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <div className="p-6">
+
+        <div className="flex flex-wrap gap-4">
         <Input
           placeholder="Search tasks..."
           value={search}
@@ -58,7 +63,40 @@ export default function BoardPage() {
           className="max-w-md"
         />
 
-        <FilterModal />
+        {/* <FilterModal /> */}
+
+  <TaskFilterSelect
+    placeholder="Status"
+    value={filters.status}
+    options={Object.values(Status)}
+    onChange={(value) =>
+      setFilters((prev) => ({
+        ...prev,
+
+        status:
+          value as Status
+          | undefined,
+      }))
+    }
+  />
+
+  <TaskFilterSelect
+    placeholder="Priority"
+    value={filters.priority}
+    options={Object.values(Priority)}
+    onChange={(value) =>
+      setFilters((prev) => ({
+        ...prev,
+
+        priority:
+          value as Priority
+          | undefined,
+      }))
+    }
+    />
+    </div>
+    
+
         <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6">
           {TASK_STATUSES.map((status) => {
             const columnTasks = tasks.filter(
@@ -74,6 +112,8 @@ export default function BoardPage() {
               />
             );
           })}
+
+          {/* <TanstackTable /> */}
         </div>
       </div>
     </DndContext>

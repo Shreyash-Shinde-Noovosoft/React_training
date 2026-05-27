@@ -16,3 +16,12 @@ export type User = {
   role: string;
   password: string;
 };
+
+export type AuthUser = {
+
+  userId: string
+
+  name: string
+
+  email: string
+}

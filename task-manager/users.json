@@ -2,7 +2,7 @@
   {
     "id": "u1",
     "name": "Aarav Sharma",
-    "email": "aarav.sharma@example.com",
+    "email": "a@gmail.com",
     "role": "Frontend Developer",
     "password": "shreyash"
 
@@ -10,7 +10,7 @@
   {
     "id": "u2",
     "name": "Priya Patel",
-    "email": "priya.patel@example.com",
+    "email": "b@gmail.com",
     "role": "Backend Developer",
     "password": "shreyash"
   },
