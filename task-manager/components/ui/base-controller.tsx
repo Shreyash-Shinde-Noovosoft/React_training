@@ -1,59 +1,146 @@
-import { Control, Controller, FieldValues, Path, RegisterOptions, useFormContext } from "react-hook-form";
-import { Field, FieldError, FieldLabel } from "./field";
+'use client'
 
-type BaseControllerProps< T extends FieldValues, > = {
-    name: Path<T>
+import {
+  Controller,
+  Control,
+  FieldValues,
+  Path,
+  RegisterOptions,
+  useFormContext,
+} from 'react-hook-form'
 
-    label?: string
+import {
+  Field,
+  FieldError,
+  FieldLabel,
+} from './field'
 
-    control?: Control<T>
+type BaseControllerProps<
+  T extends FieldValues,
+> = {
+  name: Path<T>
 
-    rules?: RegisterOptions<T>
+  label?: string
 
-    children: (params: {
-        field: any
-        fieldState: any
-    }) => React.ReactNode
+  control?: Control<T>
+
+  rules?: RegisterOptions<T>
+
+  render: (params: {
+    field: any
+    fieldState: any
+  }) => React.ReactNode
 }
 
-export function BaseController< T extends FieldValues,>({
-    name,
-    label,
-    control,
-    rules,
-    children,
+export function BaseController<
+  T extends FieldValues,
+>({
+  name,
+  label,
+  control,
+  rules,
+  render,
 }: BaseControllerProps<T>) {
-    const methods = useFormContext<T>()
 
-    const finalControl = control ?? methods.control
+  const methods = useFormContext<T>()
 
-    return (
-        <Controller
-        name = {name}
-        control={finalControl}
-        rules={rules}
+  const finalControl =
+    control ?? methods.control
 
-        render = {({field, fieldState}) => (
-            <Field data-invalid={fieldState.invalid}>
-                {
-                    label && (
-                        <FieldLabel>
-                            {label}
-                        </FieldLabel>
-                    )
-                }
+  return (
+    <Controller
+      name={name}
+      control={finalControl}
+      rules={rules}
+      render={({ field, fieldState }) => (
+        <Field data-invalid={fieldState.invalid}>
 
-                {children({
-                    field,
-                    fieldState,
-                })}
-                {fieldState.error && (
-                    <FieldError
-                    errors={[fieldState.error]}
-                    />
-                )}
-            </Field>
-        )}
-        />
-    )
+          {label && (
+            <FieldLabel>
+              {label}
+            </FieldLabel>
+          )}
+
+          {render({
+            field,
+            fieldState,
+          })}
+
+          {fieldState.error && (
+            <FieldError
+              errors={[fieldState.error]}
+            />
+          )}
+
+        </Field>
+      )}
+    />
+  )
 }
+
+// const StrinField = <T extends FieldValues>({
+//   name,
+//   label,
+//   control,
+//   rules,
+//   ...props
+// }: FormInputProps<T>) => (
+//   <BaseController name={name} label={label} control={control} rules={rules}>
+//     {({ field }) => <Input {...field} {...props} value={field.value ?? ""} />}
+//   </BaseController>
+// );
+
+// const NumberField = <T extends FieldValues>({
+//   name,
+//   label,
+//   control,
+//   rules,
+//   ...props
+// }: FormInputProps<T>) => (
+//   <BaseController name={name} label={label} control={control} rules={rules}>
+//     {({ field }) => (
+//       <Input type="number" {...field} {...props} value={field.value ?? ""} />
+//     )}
+//   </BaseController>
+// );
+
+
+// const select  = <T extends FieldValues>({
+//   name,
+//   label,
+//   placeholder,
+//   options,
+//   control,
+//   rules,
+// }: FormSelectProps<T>) => (
+//      <BaseController
+//       name={name}
+//       label={label}
+//       control={control}
+//       rules={rules}
+//     >
+//       {({ field }) => (
+//         <Select
+//           value={field.value ?? ''}
+//           onValueChange={field.onChange}
+//         >
+//           <SelectTrigger>
+//             <SelectValue
+//               placeholder={placeholder}
+//             />
+//           </SelectTrigger>
+
+//           <SelectContent>
+//             {options.map((option) => (
+//               <SelectItem
+//                 key={option.value}
+//                 value={option.value}
+//               >
+//                 {option.label}
+//               </SelectItem>
+//             ))}
+//           </SelectContent>
+//         </Select>
+//       )}
+//     </BaseController>
+// )
